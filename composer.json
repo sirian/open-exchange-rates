@@ -1,0 +1,13 @@
+{
+    "name": "sirian/open-exchange-rates",
+    "type": "library",
+    "description": "openexchangerates.org api wrapper",
+    "keywords": [],
+    "autoload": {
+        "psr-0": { "Sirian\\OpenExchangeRates\\": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "doctrine/cache": ">=1.3"
+    }
+}
