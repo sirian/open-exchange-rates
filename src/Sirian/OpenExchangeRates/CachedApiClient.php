@@ -18,7 +18,8 @@ class CachedApiClient extends ApiClient
 
     public function getHistorical(\DateTime $date)
     {
-        $key = 'historical:' . $date->format('Y-m-d');
+
+        $key = 'historical:' . $this->getUTCDate($date);
         if ($this->cache->contains($key)) {
             return unserialize($this->cache->fetch($key));
         } else {

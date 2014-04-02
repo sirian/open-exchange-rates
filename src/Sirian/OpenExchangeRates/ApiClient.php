@@ -19,7 +19,7 @@ class ApiClient
 
     public function getHistorical(\DateTime $date)
     {
-        return $this->createRates($this->request('historical/' . $date->format('Y-m-d') . '.json'));
+        return $this->createRates($this->request('historical/' . $this->getUTCDate($date) . '.json'));
     }
 
     public function getEndpoint()
@@ -45,6 +45,13 @@ class ApiClient
         }
 
         return $data;
+    }
+
+    protected function getUTCDate(\DateTime $date)
+    {
+        $date = clone $date;
+        $date->setTimezone(new \DateTimeZone('UTC'));
+        return $date->format('Y-m-d');
     }
 
     private function createRates($data)
