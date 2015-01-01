@@ -19,7 +19,11 @@ class ApiClient
 
     public function getHistorical(\DateTime $date)
     {
-        return $this->createRates($this->request('historical/' . $this->getUTCDate($date) . '.json'));
+        if ($this->getUTCDate(new \DateTime()) == $this->getUTCDate($date)) {
+            return $this->getLatest();
+        } else {
+            return $this->createRates($this->request('historical/' . $this->getUTCDate($date) . '.json'));
+        }
     }
 
     public function getEndpoint()
